@@ -1,0 +1,3 @@
+<app-navbar></app-navbar>
+<router-outlet *ngIf="auth.isAuthenticated()"></router-outlet>
+<h1 *ngIf="!auth.isAuthenticated()">Pease get logged-in</h1>

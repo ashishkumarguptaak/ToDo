@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="container">
+    <div>
+          <h1 class="customh1">ADD TASK</h1>
+    <form #taskForm="ngForm" (ngSubmit)="addtask()" novalidate>
+      <div class="form-group">
+        <label for="usr"><span class="glyphicon glyphicon glyphicon-tasks"></span> Task :</label>
+        <input type="text" [class.is-invalid]="name.invalid && name.touched" class="form-control" #name="ngModel" name="name" [(ngModel)]="data.tasks" required>
+        <small class="text-danger" [class.d-none]="name.valid || name.untouched">Task name is required</small>
+      </div>
+      <div class="form-group">
+        <label for="pwd"><span class="glyphicon glyphicon-list-alt"></span> Description :</label>
+        <textarea [class.is-invalid]="description.invalid && description.touched" class="form-control" #description="ngModel" name="task" [(ngModel)]="data.description" required></textarea>
+        <small class="text-danger" [class.d-none]="description.valid || description.untouched">Please give some description</small>
+      </div>
+      <div class="radio">
+        <label class="radio-inline"><input type="radio" name="type" checked value="Today" [(ngModel)]="data.type">Today's</label>
+        <label class="radio-inline"><input type="radio" name="type" value="Monthly" [(ngModel)]="data.type">Monthly</label>
+      </div>
+      <button [disabled]="taskForm.form.invalid" type="submit" class="btn btn-info">Add Task</button>
+    </form>
+   </div>
+    <div>
+        <div class="col-md-4" *ngFor="let task of alltasks">
+          <mat-card>
+            <mat-card-subtitle>Task :</mat-card-subtitle>
+            <mat-card-content>{{task.tasks}}</mat-card-content>
+            <mat-card-subtitle>Description :</mat-card-subtitle>
+            <mat-card-content>{{task.description}}</mat-card-content>
+            <mat-card-subtitle>Type : {{task.type}}</mat-card-subtitle>
+            <mat-card-subtitle>Date : {{task.create_date | date : 'short'}}</mat-card-subtitle>
+            <mat-card-subtitle>Status : {{task.status}}</mat-card-subtitle>
+            <button class="btn btn-danger" (click)="deleteTask(task._id)">Delete</button>
+            <button class="btn btn-info" (click)="openDialog(task)">Update</button>
+          </mat-card>
+        </div>
+    </div>
+  </div>
+</div>

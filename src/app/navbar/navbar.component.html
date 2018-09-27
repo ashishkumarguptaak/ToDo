@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark text18">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" routerLink="today" routerLinkActive="active">TODOLIST</a>
+      </div>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active"><a class="nav-link" routerLink="today" routerLinkActive="active">Today</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="monthly" routerLinkActive="active">Whole Month</a></li>
+      </ul>
+      <ul class="navbar-nav navbar-right" id="signup_login">
+          <li><a class="nav-link" *ngIf="auth.isAuthenticated()"><span class="	glyphicon glyphicon-user"></span> {{profile?.nickname}}</a></li>
+          <li><a class="nav-link" (click)="auth.logout()" *ngIf="auth.isAuthenticated()"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+          <li><a class="nav-link" (click)="auth.login()" *ngIf="!auth.isAuthenticated()"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        </ul>
+    </div>
+  </nav> 
